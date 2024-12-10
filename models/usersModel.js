@@ -7,9 +7,16 @@ const UserSchema = mongoose.Schema(
       required: true
     },
     password: {
-      type: String,
-      required: true
-    },})
+      type: String, 
+    },
+    userName:{
+      type: String, 
+    }, 
+    userRole:{
+      type: String, 
+    },
+  
+  })
 
-    const User = mongoose.model('userData', UserSchema)
+    const User = mongoose.model('User', UserSchema)
     module.exports = User
