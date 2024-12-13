@@ -7,6 +7,7 @@ const mongoose=require('mongoose')
 const authRouter = require('./routers/authRouter');
 const referralRoutes = require('./routers/referalRouter')
 const userRoutes =require('./routers/userRouter')
+const jobRoutes =require('./routers/jobRouter')
 
 var app = express();
 
@@ -23,12 +24,13 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 })
 
 app.use(cors({
-    origin:"http://localhost:8000"
+    origin:"http://localhost:5173"
 }))
 
 app.use('/api/auth',authRouter)
-app.use('/referrals', referralRoutes);
-app.use('/update-user', userRoutes);
+app.use('/api/referrals', referralRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/job', jobRoutes);
  
 
 app.listen(8000, () => {
