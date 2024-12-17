@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 exports.authenticate = (req, res, next) => {
-    const SECRET_KEY = process.env.JWT_SECRET; 
-    console.log("authenticate")
+    const SECRET_KEY = process.env.JWT_SECRET;  
     const authHeader = req.header('Authorization');
     if (!authHeader) return res.status(401).json({ message: "Access Denied. No Token Provided" });
 
@@ -21,8 +20,7 @@ exports.authenticate = (req, res, next) => {
 };
 
  
-exports.authorize = (roles) => (req, res, next) => {
-    console.log("req.body.userRole",req.user.userRole)
+exports.authorize = (roles) => (req, res, next) => { 
     if (!roles.includes(req.user.userRole)) {
         return res.status(403).json({ message: "Access Forbidden: Insufficient Permissions" });
     }

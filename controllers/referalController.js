@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 const Referrals = require('../models/referralModal');
  
 
-exports.getReferrals = async (req, res) => {
-    console.log("getReferrals")
-    const referrals = await Referrals.find({})
-    console.log(referrals)
+exports.getReferrals = async (req, res) => { 
+    const referrals = await Referrals.find({}) 
     return res.status(200).json({ referrals: referrals });
 };
 

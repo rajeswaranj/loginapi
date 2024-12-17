@@ -5,8 +5,7 @@ const User = require("../models/usersModel")
 const { doHash } = require("../utils/hashing")
 
 exports.signIn = async (req, res) => {
-    const { email, password } = req.body;
-    console.log("req.body",req.body)
+    const { email, password } = req.body; 
 
     try { 
         const { error } = signInSchema.validate({ email, password });
@@ -23,7 +22,11 @@ exports.signIn = async (req, res) => {
         if (!isPasswordCorrect) {
             return res.status(401).json({ success: false, message: 'Invalid credentials.' });
         }
- 
+
+        if(!existingUser?.userRole){
+            existingUser.userRole="employee"
+        }
+        
         const token = jwt.sign(
             { email: existingUser.email ,userRole:existingUser.userRole }, 
             process.env.JWT_SECRET, 
@@ -38,6 +41,7 @@ exports.signIn = async (req, res) => {
                 id: existingUser._id,
                 email: existingUser.email,
                 userName: existingUser.userName,
+                userRole: existingUser?.userRole
             },
         });
     } catch (error) {
@@ -47,8 +51,7 @@ exports.signIn = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-    const { userName, email, password} = req.body;
-    console.log("req.body",req.body)
+    const { userName, email, password} = req.body; 
     try { 
         if (!userName || !email || !password ) {
             return res.status(400).json({ success: false, message: 'All fields are required.' });

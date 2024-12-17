@@ -13,12 +13,12 @@ exports.signInSchema = Joi.object({
       'any.required': 'Email is required',
     }),
   password: Joi.string()
-    .min(5)
-    .max(8)
+    .min(6)
+    .max(10)
     .required()
     .messages({
-      'string.min': 'Password must be at least 5 characters long',
-      'string.max': 'Password cannot exceed 8 characters',
+      'string.min': 'Password must be at least 6 characters long',
+      'string.max': 'Password cannot exceed 10 characters',
       'any.required': 'Password is required',
     }),
 });
@@ -36,12 +36,12 @@ exports.signUpSchema = Joi.object({
       'any.required': 'Email is required',
     }),
   password: Joi.string()
-    .min(5)
-    .max(8)
+    .min(6)
+    .max(10)
     .required()
     .messages({
-      'string.min': 'Password must be at least 5 characters long',
-      'string.max': 'Password cannot exceed 8 characters',
+      'string.min': 'Password must be at least 6 characters long',
+      'string.max': 'Password cannot exceed 10 characters',
       'any.required': 'Password is required',
     }),
   userName: Joi.string()
